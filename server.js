@@ -9,6 +9,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+app.use(cors({
+  origin: 'https://auc-sol.vercel.app/',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
 const JWT_SECRET = process.env.JWT_SECRET;
@@ -45,8 +51,15 @@ app.post('/api/auctions', async (req, res) => {
   }
 });
 
-const authRoutes = require('./routes/auth');
+const authRoutes = require('./server/routes/auth');
 app.use('/api/auth', authRoutes);
+
+// Import routes
+const auctionRoutes = require('./server/routes/auctions');
+
+// Use routes
+app.use('/api/auth', authRoutes);
+app.use('/api/auctions', auctionRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
