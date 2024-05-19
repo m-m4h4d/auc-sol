@@ -12,7 +12,7 @@ const AuctionList = () => {
   useEffect(() => {
     const fetchAuctions = async () => {
       try {
-        const response = await axios.get('/api/auctions');
+        const response = await axios.get('https://asia-south1-auc-sol.cloudfunctions.net/api/api/auctions');
         setAuctions(response.data);
       } catch (err) {
         setError(err.message);
@@ -36,8 +36,8 @@ const AuctionList = () => {
       ) : (
         <ul>
           {auctions.map(auction => (
-            <li key={auction._id}>
-              <Link to={`/auction/${auction._id}`}>{auction.title}</Link>
+            <li key={auction.id}>
+              <Link to={`/auction/${auction.id}`}>{auction.title}</Link>
             </li>
           ))}
         </ul>
