@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // server.js
 require('dotenv').config();
 const express = require('express');
@@ -10,10 +11,11 @@ app.use(express.json());
 
 const PORT = process.env.PORT || 5000;
 const MONGODB_URI = process.env.MONGODB_URI;
-// eslint-disable-next-line no-unused-vars
 const JWT_SECRET = process.env.JWT_SECRET;
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log('MongoDB connected'))
+  .catch(err => console.error('MongoDB connection error:', err));
 
 const auctionSchema = new mongoose.Schema({
   title: String,
