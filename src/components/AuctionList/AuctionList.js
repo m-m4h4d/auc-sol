@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Navigation from '../Navigation/Navigation';
 import './AuctionList.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -14,6 +15,7 @@ const AuctionList = () => {
 
   return (
     <div className="auction-list">
+      <Navigation />
       <h1>Auctions</h1>
       <ul>
         {auctions.map(auction => (

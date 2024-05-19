@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navigation from '../Navigation/Navigation';
 import './CreateAuction.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -21,6 +22,7 @@ const CreateAuction = () => {
 
   return (
     <div className="create-auction">
+      <Navigation />
       <h2>Create Auction</h2>
       <form onSubmit={handleSubmit}>
         <input

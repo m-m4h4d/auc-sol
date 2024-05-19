@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import Navigation from '../Navigation/Navigation';
 import './AuctionItem.css';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -29,6 +30,7 @@ const AuctionItem = () => {
 
   return (
     <div className="auction-item">
+      <Navigation />
       <h1>{auction.title}</h1>
       <p>{auction.description}</p>
       <h2>Starting Bid: ${auction.startingBid}</h2>

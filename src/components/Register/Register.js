@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navigation from '../Navigation/Navigation';
 import './Register.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
@@ -20,6 +21,7 @@ const Register = () => {
 
   return (
     <div className="register">
+      <Navigation />
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <input
