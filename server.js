@@ -27,14 +27,22 @@ const auctionSchema = new mongoose.Schema({
 const Auction = mongoose.model('Auction', auctionSchema);
 
 app.get('/api/auctions', async (req, res) => {
-  const auctions = await Auction.find();
-  res.json(auctions);
+  try {
+    const auctions = await Auction.find();
+    res.json(auctions);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch auctions' });
+  }
 });
 
 app.post('/api/auctions', async (req, res) => {
-  const auction = new Auction(req.body);
-  await auction.save();
-  res.status(201).json(auction);
+  try {
+    const auction = new Auction(req.body);
+    await auction.save();
+    res.status(201).json(auction);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to create auction' });
+  }
 });
 
 const authRoutes = require('./routes/auth');
