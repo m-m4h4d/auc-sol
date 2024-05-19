@@ -1,0 +1,27 @@
+.auction-list {
+    padding: 20px;
+  }
+  
+  .auction-list h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .auction-list ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .auction-list li {
+    margin-bottom: 10px;
+  }
+  
+  .auction-list a {
+    text-decoration: none;
+    color: #007bff;
+  }
+  
+  .auction-list a:hover {
+    text-decoration: underline;
+  }
+  
