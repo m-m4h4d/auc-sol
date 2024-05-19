@@ -1,12 +1,12 @@
 // src/App.js
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
-import AuctionList from './components/AuctionList';
-import AuctionItem from './components/AuctionItem';
-import CreateAuction from './components/CreateAuction';
+import Home from './components/Home/Home';
+import Login from './components/Login/Login';
+import Register from './components/Register/Register';
+import AuctionList from './components/AuctionList/AuctionList';
+import AuctionItem from './components/AuctionItem/AuctionItem';
+import CreateAuction from './components/CreateAuction/CreateAuction';
 
 function App() {
   return (
