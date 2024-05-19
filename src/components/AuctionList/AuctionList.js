@@ -1,5 +1,5 @@
-// src/components/AuctionList.js
 import React, { useEffect, useState } from 'react';
+import './AuctionList.css';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
@@ -13,12 +13,12 @@ const AuctionList = () => {
   }, []);
 
   return (
-    <div>
+    <div className="auction-list">
       <h1>Auctions</h1>
       <ul>
         {auctions.map(auction => (
-          <li key={auction.id}>
-            <Link to={`/auction/${auction.id}`}>{auction.title}</Link>
+          <li key={auction._id}>
+            <Link to={`/auction/${auction._id}`}>{auction.title}</Link>
           </li>
         ))}
       </ul>
