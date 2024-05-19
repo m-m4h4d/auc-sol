@@ -1,4 +1,5 @@
 // server.js
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -7,7 +8,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect('mongodb://localhost:27017/aucsol', { useNewUrlParser: true, useUnifiedTopology: true });
+const PORT = process.env.PORT || 5000;
+const MONGODB_URI = process.env.MONGODB_URI;
+const JWT_SECRET = process.env.JWT_SECRET;
+
+mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 const auctionSchema = new mongoose.Schema({
   title: String,
@@ -29,11 +34,9 @@ app.post('/api/auctions', async (req, res) => {
   res.status(201).json(auction);
 });
 
-const PORT = process.env.PORT || 5000;
+const authRoutes = require('./routes/auth');
+app.use('/api/auth', authRoutes);
+
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
-
-// server.js (continued)
-const authRoutes = require('./routes/auth');
-app.use('/api/auth', authRoutes);
