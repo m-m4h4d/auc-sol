@@ -155,3 +155,4 @@ yarn-error.log*
 # .gitignore
 node_modules/
 .env
+dump.rdb

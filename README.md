@@ -2,73 +2,54 @@
 
 Web Engineering 4th Semester Project By Muhammad Mahad, Abdul Moiz, and Khawaja Hamza Siddique.
 
-## Getting Started with Create React App
+AucSol is an online auction app: register, list items with a starting price and
+duration, and bid against other users until the auction ends.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## How it's built
 
-### Available Scripts
+- **Front end:** React (Create React App) in `src/`.
+- **API:** Vercel serverless functions in `api/` (Node.js, no framework).
+  - `POST /api/auth/register`, `POST /api/auth/login`: return a JWT
+  - `GET /api/auctions`, `POST /api/auctions` (logged in)
+  - `GET /api/auctions/:id`, `POST /api/auctions/:id/bid` (logged in)
+  - `GET /api/health`: reports storage mode and config status
+- **Storage:** [Upstash Redis](https://upstash.com/) when configured, otherwise
+  an in-memory store (handy for local development; data is lost on restart).
+  Bids are validated and recorded atomically, so two people can't both win
+  with the same bid.
 
-In the project directory, you can run:
+## Running locally
 
-#### `npm start`
+```bash
+npm install
+npm run dev
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+This starts the API on http://localhost:3001 and the React app on
+http://localhost:3000, which forwards `/api` requests to the API. No setup or
+environment variables are needed; data is kept in memory.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+To use Redis locally, copy `.env.example` to `.env.local`, fill in the Upstash
+values, and run `node --env-file=.env.local dev-server.js` in place of
+`npm run dev:api`.
 
-#### `npm test`
+## Deploying to Vercel
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Import this repository in [Vercel](https://vercel.com/new). The Create React
+   App preset is detected automatically; no build settings need changing.
+2. In **Settings → Environment Variables**, add `JWT_SECRET` with a long random
+   value (for example the output of `openssl rand -hex 32`).
+3. In **Storage** (or the Marketplace), add **Upstash Redis** and connect it to
+   the project. Its credentials are added as environment variables
+   automatically. The free tier is plenty for this app.
+4. Redeploy so the new variables take effect.
 
-#### `npm run build`
+Without step 3 the app still runs, but shows a "demo mode" banner: data lives
+in memory, so it disappears whenever Vercel recycles the function.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Tests
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-#### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-### Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-#### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-#### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-#### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-#### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-#### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-#### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```bash
+npm run test:api   # API tests (in-memory store)
+npm test           # React tests
+```

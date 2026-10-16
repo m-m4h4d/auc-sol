@@ -11,3 +11,77 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.error {
+  color: #c0392b;
+}
+
+.notice {
+  color: #555;
+  background: #f4f6f8;
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+
+.banner {
+  background: #fff3cd;
+  color: #664d03;
+  padding: 8px 16px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.banner-error {
+  background: #f8d7da;
+  color: #842029;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 4px;
+  background: #007bff;
+  color: #fff;
+  text-decoration: none;
+}
+
+.button:hover {
+  background: #0056b3;
+}
+
+.button-secondary {
+  background: #6c757d;
+}
+
+.button-secondary:hover {
+  background: #545b62;
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 16px;
+}

@@ -12,7 +12,8 @@
   }
   
   .create-auction input,
-  .create-auction textarea {
+  .create-auction textarea,
+  .create-auction select {
     display: block;
     width: 100%;
     padding: 10px;
@@ -36,3 +37,12 @@
     background-color: #0056b3;
   }
   
+  .create-auction label {
+    display: block;
+    margin-bottom: 10px;
+    color: #555;
+  }
+
+  .create-auction select {
+    margin-top: 4px;
+  }
