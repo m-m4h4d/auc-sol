@@ -1,0 +1,89 @@
+.price-board {
+  background: var(--ink);
+  color: var(--board-text);
+  border-radius: 20px;
+  padding: clamp(22px, 4vw, 36px);
+}
+
+.board-status {
+  margin: 0;
+  color: var(--board-muted);
+  font-weight: 500;
+}
+
+.board-price {
+  margin: 0 0 18px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(3.6rem, 10vw, 6.4rem);
+  line-height: 0.95;
+  color: var(--paddle);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.price-board.is-ended .board-price {
+  color: var(--board-text);
+}
+
+.board-price.flash {
+  animation: price-flash 1.2s ease-out;
+}
+
+@keyframes price-flash {
+  0% {
+    background: var(--paddle);
+    color: var(--ink);
+    box-shadow: 0 0 0 10px var(--paddle);
+  }
+  100% {
+    background: transparent;
+    box-shadow: 0 0 0 10px transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .board-price.flash {
+    animation: none;
+  }
+}
+
+.board-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 36px;
+  margin: 0;
+  padding-top: 18px;
+  border-top: 1px solid var(--board-line);
+}
+
+.board-facts dt {
+  color: var(--board-muted);
+  font-size: 0.85rem;
+}
+
+.board-facts dd {
+  margin: 2px 0 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.7rem;
+  line-height: 1.1;
+  font-variant-numeric: tabular-nums;
+}
+
+.board-facts dd.is-urgent {
+  color: var(--paddle);
+}
+
+.board-facts dd.board-bidder {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.board-actions {
+  margin-top: 26px;
+}

@@ -1,0 +1,54 @@
+.paddle {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+.paddle-head {
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--paddle);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  font-family: var(--font-display);
+  font-weight: 800;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.paddle::after {
+  content: '';
+  background: var(--ink);
+  border-radius: 0 0 3px 3px;
+}
+
+/* On dark backgrounds the handle needs a light colour to stay visible. */
+.on-dark .paddle::after {
+  background: var(--board-muted);
+}
+
+.paddle-small .paddle-head {
+  width: 33px;
+  height: 33px;
+  font-size: 0.82rem;
+}
+
+.paddle-small::after {
+  width: 4px;
+  height: 7px;
+}
+
+.paddle-large .paddle-head {
+  width: 132px;
+  height: 132px;
+  border-width: 4px;
+  font-size: 3.4rem;
+}
+
+.paddle-large::after {
+  width: 16px;
+  height: 64px;
+}

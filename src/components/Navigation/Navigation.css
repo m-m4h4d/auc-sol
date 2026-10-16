@@ -1,42 +1,87 @@
 .navigation {
-  background-color: #333;
-  padding: 0 10px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
 }
 
-.navigation ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+.navigation-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 10px 20px;
   display: flex;
   align-items: center;
+  gap: 12px 32px;
   flex-wrap: wrap;
 }
 
-.navigation a,
-.navigation button,
-.navigation-user {
-  display: block;
-  color: white;
-  padding: 14px 16px;
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.9rem;
+  color: var(--ink);
   text-decoration: none;
-  font: inherit;
 }
 
-.navigation button {
-  background: none;
-  border: none;
-  cursor: pointer;
+.navigation-links,
+.navigation-account {
+  display: flex;
+  align-items: center;
+  gap: 24px;
 }
 
-.navigation a:hover,
-.navigation button:hover,
-.navigation a.active {
-  background-color: #111;
+.navigation-links {
+  flex: 1;
+}
+
+.navigation-links a,
+.navigation-account > a:not(.btn) {
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 500;
+  padding: 6px 0;
+  border-bottom: 3px solid transparent;
+}
+
+.navigation-links a:hover,
+.navigation-account > a:not(.btn):hover {
+  color: var(--cobalt);
+}
+
+.navigation-links a.active,
+.navigation-account > a.active {
+  border-bottom-color: var(--paddle);
 }
 
 .navigation-user {
-  color: #bbb;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .navigation-links {
+    order: 3;
+    flex-basis: 100%;
+  }
+
+  .navigation-inner {
+    gap: 4px 16px;
+  }
+
+  .wordmark {
+    font-size: 1.6rem;
+  }
+
+  .navigation-account {
+    margin-left: auto;
+    gap: 14px;
+  }
+
+  .navigation-account .btn {
+    padding: 7px 14px;
+    font-size: 0.92rem;
+  }
 }

@@ -1,0 +1,72 @@
+.lot-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 18px 4px;
+  border-bottom: 1px solid var(--line);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a.lot-row:hover .lot-title {
+  color: var(--cobalt);
+}
+
+a.lot-row:focus-visible {
+  outline-offset: 2px;
+}
+
+.lot-main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.lot-title {
+  font-weight: 600;
+  font-size: 1.12rem;
+  overflow-wrap: anywhere;
+}
+
+.lot-seller {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.lot-numbers {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.lot-price {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.lot-note {
+  display: flex;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin-top: 4px;
+}
+
+.lot-time.is-urgent {
+  background: var(--paddle);
+  color: var(--ink);
+  font-weight: 600;
+  padding: 0 6px;
+  border-radius: 4px;
+}
+
+.lot-row.is-ended .lot-title,
+.lot-row.is-ended .lot-price {
+  color: var(--muted);
+}
