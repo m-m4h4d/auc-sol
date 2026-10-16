@@ -1,83 +1,200 @@
-.auction-item h1 {
-  text-align: center;
-  margin-bottom: 4px;
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.auction-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 440px);
+  grid-template-areas:
+    'head board'
+    'body board';
+  grid-template-rows: auto 1fr;
+  column-gap: 48px;
+  align-items: start;
+}
+
+.auction-head {
+  grid-area: head;
+}
+
+.auction-body {
+  grid-area: body;
+}
+
+.auction-head h1 {
+  overflow-wrap: anywhere;
 }
 
 .auction-seller {
-  text-align: center;
-  color: #666;
-  margin-top: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  margin: 14px 0 24px;
 }
 
 .auction-description {
   white-space: pre-wrap;
+  max-width: 38em;
+  margin: 0 0 48px;
+  font-size: 1.05rem;
 }
 
-.auction-stats {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin: 20px 0;
+.auction-board {
+  grid-area: board;
+  position: sticky;
+  top: 20px;
 }
 
-.auction-stats > div {
-  flex: 1;
-  min-width: 140px;
-  padding: 12px 16px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+.bid-history h2 {
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--ink);
 }
 
-.auction-stats span {
-  display: block;
-  color: #666;
-  font-size: 0.9em;
-}
-
-.auction-stats strong {
-  font-size: 1.4em;
-}
-
-.auction-item h2 {
-  margin-top: 30px;
-}
-
-.auction-item ul {
-  list-style-type: none;
+.bid-history ol {
+  list-style: none;
   padding: 0;
+  margin: 0;
 }
 
-.auction-item li {
-  padding: 8px 0;
-  border-bottom: 1px solid #eee;
+.bid-history li {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
 }
 
-.bid-time {
-  float: right;
-  color: #888;
-  font-size: 0.9em;
+.history-bidder {
+  font-weight: 500;
+  overflow-wrap: anywhere;
 }
 
-.auction-item form {
-  margin-top: 20px;
+.history-amount {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.4rem;
+  font-variant-numeric: tabular-nums;
 }
 
-.auction-item input {
-  padding: 10px;
-  margin-right: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+.history-time {
+  color: var(--muted);
+  font-size: 0.88rem;
+  min-width: 5.5em;
+  text-align: right;
 }
 
-.auction-item button {
-  padding: 10px;
-  background-color: #28a745;
-  color: #fff;
-  border: none;
-  border-radius: 3px;
+.bid-history li:not(.is-top) .history-amount {
+  color: var(--muted);
+}
+
+.history-empty {
+  color: var(--muted);
+}
+
+/* Inside the price board */
+.board-note {
+  margin: 14px 0 0;
+  color: var(--board-muted);
+}
+
+.board-note a {
+  color: var(--paddle);
+}
+
+.board-leading {
+  margin: 0 0 16px;
+  padding: 8px 12px;
+  background: var(--paddle);
+  color: var(--ink);
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.bid-suggestions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.bid-suggestions button {
+  flex: 1;
+  padding: 8px 10px;
+  background: transparent;
+  color: var(--board-text);
+  border: 1px solid var(--board-line);
+  border-radius: 999px;
+  font-weight: 600;
   cursor: pointer;
+  font-variant-numeric: tabular-nums;
 }
 
-.auction-item button:hover {
-  background-color: #218838;
+.bid-suggestions button:hover,
+.bid-suggestions button[aria-pressed='true'] {
+  border-color: var(--paddle);
+  color: var(--paddle);
+}
+
+.bid-label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.bid-row {
+  display: flex;
+  gap: 10px;
+}
+
+.bid-row .money-input {
+  flex: 1;
+  min-width: 0;
+}
+
+.price-board .input {
+  border-color: transparent;
+  color: var(--ink);
+}
+
+.price-board :focus-visible {
+  outline-color: var(--paddle);
+}
+
+.price-board .input:focus {
+  border-color: var(--paddle);
+}
+
+.bid-hint {
+  margin: 8px 0 0;
+  color: var(--board-muted);
+  font-size: 0.88rem;
+}
+
+.bid-error {
+  margin: 12px 0 0;
+  padding: 8px 12px;
+  background: var(--danger);
+  color: #fff;
+  border-radius: 8px;
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .auction-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'head'
+      'board'
+      'body';
+  }
+
+  .auction-board {
+    position: static;
+    margin-bottom: 36px;
+  }
 }

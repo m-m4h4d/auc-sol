@@ -1,6 +1,6 @@
 {
   "short_name": "AucSol",
-  "name": "Online Auction System",
+  "name": "AucSol auctions",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#161A3A",
+  "background_color": "#F3F4F8"
 }

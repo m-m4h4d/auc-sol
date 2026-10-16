@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 import { AuthProvider, useAuth } from './auth';
 import { api } from './api';
 import Navigation from './components/Navigation/Navigation';
@@ -45,8 +45,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
 };
 
 const NotFound = () => (
-  <div className="page">
-    <h2>Page not found</h2>
+  <div className="page page-narrow">
+    <div className="empty-state">
+      <p>There's no page at this address.</p>
+      <Link to="/auctions" className="btn btn-primary">Browse auctions</Link>
+    </div>
   </div>
 );
 

@@ -1,48 +1,82 @@
-.create-auction {
-    max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .create-auction h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .create-auction input,
-  .create-auction textarea,
-  .create-auction select {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-  }
-  
-  .create-auction button {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-  }
-  
-  .create-auction button:hover {
-    background-color: #0056b3;
-  }
-  
-  .create-auction label {
-    display: block;
-    margin-bottom: 10px;
-    color: #555;
+.create-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.create-form {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: clamp(22px, 4vw, 36px);
+}
+
+.duration-field {
+  border: none;
+  padding: 0;
+  margin: 0 0 28px;
+}
+
+.duration-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.duration-options label {
+  position: relative;
+}
+
+.duration-options input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.duration-options span {
+  display: block;
+  padding: 9px 18px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  font-weight: 600;
+  background: var(--surface);
+}
+
+.duration-options input:checked + span {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--board-text);
+}
+
+.duration-options input:focus-visible + span {
+  outline: 3px solid var(--cobalt);
+  outline-offset: 2px;
+}
+
+.create-preview {
+  position: sticky;
+  top: 20px;
+}
+
+.preview-label {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.preview-card {
+  border-top: 3px solid var(--ink);
+}
+
+@media (max-width: 820px) {
+  .create-layout {
+    grid-template-columns: 1fr;
   }
 
-  .create-auction select {
-    margin-top: 4px;
+  .create-preview {
+    position: static;
+    order: -1;
   }
+}

@@ -1,22 +1,119 @@
-.home {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  .home h1 {
-    font-size: 3em;
-    color: #333;
-  }
-  
-  .home p {
-    font-size: 1.5em;
-    color: #666;
-  }
-  
-.home-actions {
+.home-hero {
+  margin-bottom: 56px;
+}
+
+.home-hero .price-board {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  column-gap: 48px;
+  align-content: start;
+  padding: clamp(28px, 5vw, 56px);
+}
+
+.home-hero .price-board > * {
+  grid-column: 2;
+}
+
+.home-hero .price-board > .hero-heading {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+  align-self: center;
+}
+
+.hero-kicker {
+  margin: 0 0 12px;
+  color: var(--paddle);
+  font-weight: 600;
+}
+
+.hero-heading h1 {
+  font-size: clamp(2.8rem, 7vw, 5.4rem);
+  overflow-wrap: anywhere;
+}
+
+.hero-heading h1 a {
+  color: var(--board-text);
+  text-decoration: none;
+}
+
+.hero-heading h1 a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 6px;
+}
+
+.hero-seller {
+  margin: 14px 0 0;
+  color: var(--board-muted);
+}
+
+.hero-empty {
+  background: var(--ink);
+  color: var(--board-text);
+  border-radius: 20px;
+  padding: clamp(32px, 6vw, 64px);
+  min-height: 280px;
+}
+
+.hero-empty p {
+  color: var(--board-muted);
+  margin: 14px 0 24px;
+}
+
+.home-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.section-header {
   display: flex;
-  gap: 12px;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 30px;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding-bottom: 8px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.home-quiet {
+  color: var(--muted);
+}
+
+.home-sell {
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: 20px;
+  padding: 28px;
+}
+
+.home-sell ol {
+  padding-left: 1.3em;
+  margin: 18px 0 24px;
+}
+
+.home-sell li {
+  margin-bottom: 8px;
+}
+
+.home-sell li::marker {
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+
+@media (max-width: 820px) {
+  .home-hero .price-board,
+  .home-columns {
+    grid-template-columns: 1fr;
+  }
+
+  .home-hero .price-board > *,
+  .home-hero .price-board > .hero-heading {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .hero-heading {
+    margin-bottom: 28px;
+  }
 }

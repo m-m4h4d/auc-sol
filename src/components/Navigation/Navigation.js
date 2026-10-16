@@ -1,6 +1,7 @@
 import React from 'react';
-import { NavLink, useHistory } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { useAuth } from '../../auth';
+import Paddle from '../Paddle/Paddle';
 import './Navigation.css';
 
 const Navigation = () => {
@@ -13,26 +14,38 @@ const Navigation = () => {
   };
 
   return (
-    <nav className="navigation">
-      <ul>
-        <li><NavLink to="/" exact>Home</NavLink></li>
-        <li><NavLink to="/auctions">Auctions</NavLink></li>
-        {user && <li><NavLink to="/create-auction">Create Auction</NavLink></li>}
-      </ul>
-      <ul>
-        {user ? (
-          <>
-            <li className="navigation-user">Hi, {user}</li>
-            <li><button type="button" onClick={handleLogout}>Logout</button></li>
-          </>
-        ) : (
-          <>
-            <li><NavLink to="/login">Login</NavLink></li>
-            <li><NavLink to="/register">Register</NavLink></li>
-          </>
-        )}
-      </ul>
-    </nav>
+    <header className="navigation">
+      <div className="navigation-inner">
+        <Link to="/" className="wordmark">
+          <Paddle number="A" label="AucSol home" />
+          AucSol
+        </Link>
+
+        <nav className="navigation-links" aria-label="Main">
+          <NavLink to="/auctions">Auctions</NavLink>
+          {user && <NavLink to="/create-auction">Sell an item</NavLink>}
+        </nav>
+
+        <div className="navigation-account">
+          {user ? (
+            <>
+              <span className="navigation-user">
+                <Paddle username={user} label={`Your paddle number`} />
+                {user}
+              </span>
+              <button type="button" className="text-button" onClick={handleLogout}>
+                Log out
+              </button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login">Log in</NavLink>
+              <Link to="/register" className="btn btn-primary">Create account</Link>
+            </>
+          )}
+        </div>
+      </div>
+    </header>
   );
 };
 
